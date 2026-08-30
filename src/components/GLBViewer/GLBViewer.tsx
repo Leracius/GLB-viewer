@@ -22,6 +22,7 @@ import type {
 import "./viewer.css";
 
 const SAMPLE_MODELS: SampleModelItem[] = [
+  // Modelos Locales
   {
     name: "Scorpion (Animado)",
     url: "/models/scorpion.glb",
@@ -29,11 +30,49 @@ const SAMPLE_MODELS: SampleModelItem[] = [
     description: "Modelo esquelético animado",
   },
   {
+    name: "Lobo",
+    url: "/models/lobo.glb",
+    category: "Local",
+    description: "Fauna salvaje 3D",
+  },
+  {
+    name: "Nutria",
+    url: "/models/nutria.glb",
+    category: "Local",
+    description: "Modelo animal",
+  },
+  {
+    name: "Suricata",
+    url: "/models/suricata.glb",
+    category: "Local",
+    description: "Mamífero del desierto",
+  },
+  {
+    name: "Cangrejo",
+    url: "/models/cangrejo.glb",
+    category: "Local",
+    description: "Crustáceo marino",
+  },
+  {
+    name: "Satélite",
+    url: "/models/satelite.glb",
+    category: "Local",
+    description: "Tecnología espacial",
+  },
+  {
     name: "Planeta Tierra (HD)",
     url: "/models/tierra.glb",
     category: "Local",
     description: "Esfera de alta resolución",
   },
+  {
+    name: "Edificio Urbano",
+    url: "/models/edificio.glb",
+    category: "Local",
+    description: "Low-poly Kenney asset",
+  },
+
+  // Muestras Web Khronos
   {
     name: "Damaged Helmet",
     url: "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/DamagedHelmet/glTF-Binary/DamagedHelmet.glb",

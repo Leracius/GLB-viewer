@@ -161,7 +161,7 @@ export const ViewerControls: React.FC<ViewerControlsProps> = ({
               </div>
 
               {/* Grid de Modelos de la Categoría Activa */}
-              <div className="grid grid-cols-2 gap-1.5">
+              <div className="grid grid-cols-2 gap-1.5 max-h-48 overflow-y-auto pr-1">
                 {filteredSamples.map((sample) => {
                   const isActive = currentModelUrl === sample.url;
                   return (
