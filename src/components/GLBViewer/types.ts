@@ -4,7 +4,11 @@ export interface ViewerConfig {
   autoRotate: boolean;
   rotationSpeed: number;
   lightingPreset: LightingPreset;
-  showGrid?: boolean;
+  showGrid: boolean;
+  wireframe: boolean;
+  activeAnimation: string | null;
+  isPlaying: boolean;
+  animationSpeed: number;
 }
 
 export interface ModelMetadata {
@@ -14,6 +18,7 @@ export interface ModelMetadata {
   vertices: number;
   meshes: number;
   animationCount: number;
+  animationNames: string[];
   dimensions?: {
     x: number;
     y: number;
@@ -24,6 +29,14 @@ export interface ModelMetadata {
 export interface ModelSource {
   url: string;
   name: string;
+  category?: "Local" | "Web";
   size?: number;
   isSample?: boolean;
+}
+
+export interface SampleModelItem {
+  name: string;
+  url: string;
+  category: "Local" | "Web";
+  description?: string;
 }

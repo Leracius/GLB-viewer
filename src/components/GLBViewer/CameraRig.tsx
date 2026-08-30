@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useMemo } from "react";
 import { useThree, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
@@ -21,21 +21,16 @@ export const CameraRig: React.FC<CameraRigProps> = ({
 
   const safeRadius = Math.max(modelRadius, 0.5);
   const idealDistance = safeRadius * 2.2;
-  const defaultPos = [
-    safeRadius * 1.2,
-    safeRadius * 0.8,
-    idealDistance,
-  ] as const;
+  const defaultPos = useMemo(
+    () => [safeRadius * 1.2, safeRadius * 0.8, idealDistance] as const,
+    [safeRadius, idealDistance],
+  );
 
-  const triggerReset = () => {
+  useEffect(() => {
     targetCamPosRef.current.set(defaultPos[0], defaultPos[1], defaultPos[2]);
     targetLookAtRef.current.set(0, 0, 0);
     isTransitioningRef.current = true;
-  };
-
-  useEffect(() => {
-    triggerReset();
-  }, [resetTrigger, modelRadius]);
+  }, [resetTrigger, defaultPos]);
 
   useFrame((_, delta) => {
     if (!isTransitioningRef.current || !controlsRef.current) return;

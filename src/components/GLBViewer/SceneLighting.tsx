@@ -1,5 +1,5 @@
 import React from "react";
-import { LightingPreset } from "./types";
+import type { LightingPreset } from "./types";
 
 interface SceneLightingProps {
   preset: LightingPreset;

@@ -1,4 +1,4 @@
-import { GLBViewer } from "../components/GLBViewer/GLBViewer";
+import { GLBViewer } from "./components/GLBViewer/GLBViewer";
 
 function App() {
   return <GLBViewer />;

@@ -4,6 +4,7 @@ import React, {
   useEffect,
   forwardRef,
   useImperativeHandle,
+  useCallback,
 } from "react";
 import { UploadCloud, FileBox, AlertCircle } from "lucide-react";
 
@@ -30,16 +31,19 @@ export const DropZone = forwardRef<DropZoneHandle, DropZoneProps>(
       },
     }));
 
-    const validateAndProcessFile = (file: File) => {
-      setErrorMsg(null);
-      const name = file.name.toLowerCase();
-      if (name.endsWith(".glb") || name.endsWith(".gltf")) {
-        onFileSelected(file);
-      } else {
-        setErrorMsg("Por favor selecciona un archivo 3D válido (.glb o .gltf)");
-        setTimeout(() => setErrorMsg(null), 4000);
-      }
-    };
+    const validateAndProcessFile = useCallback(
+      (file: File) => {
+        setErrorMsg(null);
+        const name = file.name.toLowerCase();
+        if (name.endsWith(".glb") || name.endsWith(".gltf")) {
+          onFileSelected(file);
+        } else {
+          setErrorMsg("Por favor selecciona un archivo 3D válido (.glb o .gltf)");
+          setTimeout(() => setErrorMsg(null), 4000);
+        }
+      },
+      [onFileSelected],
+    );
 
     const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const files = e.target.files;
@@ -103,7 +107,7 @@ export const DropZone = forwardRef<DropZoneHandle, DropZoneProps>(
         window.removeEventListener("dragover", handleDragOver);
         window.removeEventListener("drop", handleDrop);
       };
-    }, []);
+    }, [validateAndProcessFile]);
 
     return (
       <div className="relative w-full h-full overflow-hidden">
