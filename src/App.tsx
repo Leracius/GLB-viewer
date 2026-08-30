@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Navbar } from "./components/Navigation/Navbar";
+import { FooterSignature } from "./components/Navigation/FooterSignature";
 import { StudioPage } from "./pages/StudioPage";
 import { GuidePage } from "./pages/GuidePage";
 
@@ -13,6 +14,7 @@ function App() {
           <Route path="/learn" element={<GuidePage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
+        <FooterSignature />
       </div>
     </BrowserRouter>
   );
