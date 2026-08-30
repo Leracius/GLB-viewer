@@ -98,7 +98,7 @@ const CanvasLoader: React.FC = () => (
     <div className="flex flex-col items-center gap-3 px-5 py-4 rounded-2xl bg-slate-900/90 border border-slate-700/80 backdrop-blur-md shadow-2xl text-slate-200">
       <div className="w-7 h-7 border-3 border-sky-400 border-t-transparent rounded-full animate-spin" />
       <span className="text-xs font-semibold tracking-wide">
-        Cargando y procesando geometría 3D...
+        Cargando geometría 3D...
       </span>
     </div>
   </Html>
@@ -231,7 +231,7 @@ export const GLBViewer: React.FC = () => {
         onFileSelected={handleFileSelected}
         hasModel={Boolean(modelSource.url)}
       >
-        {/* Canvas 3D de Three.js / R3F (Fondo Interactivo Completo) */}
+        {/* Canvas 3D de Three.js / R3F (Fondo Interactivo Completo Touch & Mouse) */}
         <div className="w-full h-full absolute inset-0 z-0">
           <Canvas
             shadows
@@ -276,23 +276,19 @@ export const GLBViewer: React.FC = () => {
           </Canvas>
         </div>
 
-        {/* Barra Superior Responsiva y Flotante (sin superposiciones) */}
-        <div className="absolute top-4 left-4 right-4 z-20 flex flex-col sm:flex-row justify-between items-start gap-3 pointer-events-none">
-          {/* Header con Nombre del Modelo y Estado */}
-          <header className="pointer-events-auto flex items-center gap-2.5 px-3.5 py-2 rounded-2xl bg-slate-900/85 border border-slate-800/80 backdrop-blur-md shadow-xl max-w-full">
-            <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.6)] shrink-0" />
-            <h1 className="text-xs font-bold tracking-wider uppercase text-slate-200 shrink-0">
-              GLB 3D Studio{" "}
-              <span className="text-sky-400 font-medium">Pro</span>
-            </h1>
-            <span className="text-slate-600 shrink-0">|</span>
-            <span className="text-xs text-slate-300 font-medium truncate max-w-[130px] sm:max-w-[200px] md:max-w-xs">
+        {/* Badge del Modelo Activo (Posicionado limpiamente sin interferir con la Navbar) */}
+        <div className="absolute top-16 sm:top-4 left-3 sm:left-4 z-20 pointer-events-none">
+          <header className="pointer-events-auto flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/85 border border-slate-800/80 backdrop-blur-md shadow-xl max-w-[200px] sm:max-w-xs">
+            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+            <span className="text-[11px] sm:text-xs text-slate-200 font-semibold truncate">
               {modelSource.name}
             </span>
           </header>
+        </div>
 
-          {/* Panel de Controles Flotante */}
-          <div className="pointer-events-auto w-84 max-w-full self-end sm:self-auto">
+        {/* Panel de Controles Flotante (Desktop) y Bottom Drawer (Mobile) */}
+        <div className="absolute top-16 md:top-4 right-4 z-20 pointer-events-none">
+          <div className="pointer-events-auto">
             <ViewerControls
               config={config}
               onConfigChange={handleConfigChange}
